@@ -66,6 +66,8 @@ Los vendedores al visualizar los producto que registraron, pueden editar la sigu
 
 Los vendedores pueden eliminar los registros de sus productos
 
+Los vendedores pueden consultar su historial de ventas
+
 Los clientes que hayan inciado sesión pueden consultar productos, además podrán filtrar y ordenar por:
 precio
 nombre
