@@ -3,6 +3,8 @@ import authRouter from './routes/authRoutes'
 
 const api = express()
 
+api.use(express.json())
+
 api.get('/', (req, res) => {
   res.json({
     msg: 'todo bien',
