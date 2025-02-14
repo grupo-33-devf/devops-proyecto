@@ -1,23 +1,24 @@
-## Note
-
-All routes can return
-
-```
-statusCode 500
-code SERVER_ERROR
-
-statusCode 400
-code BAD_REQUEST
-```
-
-| Ruta           | Método | Params | Body                                                                                                               | Return                                                           |
-| -------------- | ------ | ------ | ------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------- |
-| /              | GET    | N/A    | N/A                                                                                                                | statusCode 200 code HEALTH_CHECK_SUCCESS                         |
-| /auth/register | POST   | N/A    | { firstName: string lastName: string birthDay: date email: string password: string phone: string address: string } | statusCode 201 code NEW_USER statusCode 209 code DUPLICATED_USER |
-| /auth/login    | POST   | N/A    | { email: string password: string }                                                                                 | statusCode 200 code LOGIN_SUCCESS statusCode 401 code BAD_LOGIN  |
-| /store         | GET    | q      |                                                                                                                    |                                                                  |
-|                |        |        |                                                                                                                    |                                                                  |
-|                |        |        |                                                                                                                    |                                                                  |
-|                |        |        |                                                                                                                    |                                                                  |
-|                |        |        |                                                                                                                    |                                                                  |
-|                |        |        |                                                                                                                    |                                                                  |
+| Ruta                   | Método | Params        | Body                                                               | Privada | Rol  | Return                        |                        |                        |
+| ---------------------- | ------ | ------------- | ------------------------------------------------------------------ | ------- | ---- | ----------------------------- | ---------------------- | ---------------------- |
+| /                      | GET    | N/A           | N/A                                                                | No      | N/A  | 200 HEALTH_CHECK_SUCCESS      |                        |                        |
+| /auth/register         | POST   | N/A           | { firstName, lastName, birthDay, email, password, phone, address } | No      | N/A  | 201 NEW_USER                  | 209 DUPLICATED_USER    |                        |
+| /auth/login            | POST   | N/A           | { email, password }                                                | No      | N/A  | 200 LOGIN_SUCCESS             | 401 BAD_LOGIN          |                        |
+| /auth/verify-email     | GET    | token (query) | N/A                                                                | No      | N/A  | 200 EMAIL_VERIFIED            | 400 INVALID_TOKEN      | 410 EXPIRED_TOKEN      |
+| /auth/recover-password | POST   | N/A           | { email }                                                          | No      | N/A  | 200 RECOVERY_EMAIL_SENT       | 404 USER_NOT_FOUND     |                        |
+| /auth/reset-password   | POST   | token (query) | { newPassword, confirmPassword }                                   | No      | N/A  | 200 PASSWORD_UPDATED          | 400 INVALID_TOKEN      | 410 EXPIRED_TOKEN      |
+| /users/me              | GET    | N/A           | N/A                                                                | Sí      | user | 200 User data                 |                        |                        |
+| /users/me              | PUT    | N/A           | { firstName?, lastName?, birthDay?, phone?, address? }             | Sí      | user | 200 PROFILE_UPDATED           | 400 INVALID_DATA       |                        |
+| /users/credentials     | PUT    | N/A           | { currentPassword, newEmail?, newPassword?, confirmNew? }          | Sí      | user | 200 CREDENTIALS_UPDATED       | 401 WRONG_PASSWORD     |                        |
+| /products              | POST   | N/A           | { name, description, price, photos[], stock }                      | Sí      | user | 201 PRODUCT_CREATED           | 400 INVALID_DATA       |                        |
+| /products              | GET    | q (filters)   | N/A                                                                | Sí      | user | 200 Product list with filters |                        |                        |
+| /products/:productId   | GET    | N/A           | N/A                                                                | Sí      | user | 200 Product details           | 404 NOT_FOUND          |                        |
+| /products/:productId   | PUT    | N/A           | { name?, description?, price?, photos?, stock? }                   | Sí      | user | 200 PRODUCT_UPDATED           | 403 FORBIDDEN          | 404 NOT_FOUND          |
+| /products/:productId   | DELETE | N/A           | N/A                                                                | Sí      | user | 200 PRODUCT_DELETED           | 403 FORBIDDEN          | 404 NOT_FOUND          |
+| /cart                  | GET    | N/A           | N/A                                                                | Sí      | user | 200 Cart contents             |                        |                        |
+| /cart/items            | POST   | N/A           | { productId, quantity }                                            | Sí      | user | 201 ITEM_ADDED                | 400 INSUFFICIENT_STOCK | 404 ITEM               |
+| /cart/items/:itemId    | PUT    | N/A           | { quantity }                                                       | Sí      | user | 200 ITEM_UPDATED              | 400 INSUFFICIENT_STOCK | 404                    |
+| /cart/items/:itemId    | DELETE | N/A           | N/A                                                                | Sí      | user | 200 ITEM_DELETED              | 404                    |                        |
+| /cart/checkout         | POST   | N/A           | N/A                                                                | Sí      | user | 200 CHECKOUT_SUCCESS          | 400 EMPTY_CART         | 400 INSUFFICIENT_STOCK |
+| /orders                | GET    | q (filters)   | N/A                                                                | Sí      | user | 200 Order history             |                        |                        |
+| /orders/:orderId       | GET    | N/A           | N/A                                                                | Sí      | user | 200 Order details             | 403 FORBIDDEN          | 404 NOT_FOUND          |
+| /sales                 | GET    | q (filters)   | N/A                                                                | Sí      | user | 200 Sales history             |                        |                        |

@@ -90,7 +90,4 @@ El cliente deberá poder ver su historial de compras filtrando por un rango de f
 TODO
 Pasarela de pago que extraiga datos del producto
 
-TBD
-
-- Status de producto(publicado no publicado)
-- Chat con el cliente después de compra
+ruta front para cambiar contraseña recovery password
