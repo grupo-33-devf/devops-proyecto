@@ -27,7 +27,14 @@ const Login = () => {
   const handleLogin = (e) => {
     e.preventDefault();
 
-    login(formData.email, formData.password);
+    const fetchData = async () => {
+      try {
+        await login(formData.email, formData.password);
+      } catch (error) {
+        console.error("Error al hacer login", error);
+      }
+    };
+    fetchData();
   };
 
   return (

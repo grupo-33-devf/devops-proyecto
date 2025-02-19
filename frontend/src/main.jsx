@@ -11,7 +11,7 @@ import App from "./App.jsx";
 
 const theme = createTheme({
   palette: {
-    type: "light",
+    mode: "dark",
   },
 });
 
