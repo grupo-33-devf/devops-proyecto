@@ -5,12 +5,14 @@ FROM node:20.18.2-alpine3.20
 WORKDIR /api
 
 # Copiamos el repositorio dentro de la imagen
-COPY . .
+COPY package*.json .
 
 # Instalamos dependencias dentro de la imagen
 RUN npm install
 
+COPY . .
+
 EXPOSE 8080
 
 # Comando que se ejecuta al levantar un contenedor
-CMD [ "npm", "run", "dev" ]
+CMD [ "npm", "run", "dev:watch" ]
