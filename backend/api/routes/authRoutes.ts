@@ -1,9 +1,13 @@
-import { Router } from "express";
-import { login, register } from "../controllers/authController";
+import { Router } from 'express'
+import { login, register, profile } from '../controllers/authController'
 
-const authRouter = Router();
+import validateBody from '../middlewares/bodyValidator.middleware'
+import { registerUserSchema } from '../validatorSchemas/auth.schema'
 
-authRouter.post("/register", register);
-authRouter.post("/login", login);
+const authRouter = Router()
 
-export default authRouter;
+authRouter.post('/register', validateBody(registerUserSchema), register)
+authRouter.post('/login', login)
+authRouter.get('/profile', profile)
+
+export default authRouter

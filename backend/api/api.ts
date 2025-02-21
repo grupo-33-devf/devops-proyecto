@@ -15,4 +15,7 @@ api.get('/', (req, res) => {
 
 api.use('/auth', authRouter)
 
+// Custom error handler
+// api.use((err, req, res, next) => {})
+
 export default api

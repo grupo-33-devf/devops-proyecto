@@ -4,7 +4,7 @@ export type User = {
   firstName: string
   lastName: string
   birthday: Date
-  phone?: number
+  phone?: string
   address?: string
   email: string
   password: string
@@ -31,6 +31,7 @@ const userSchema = new Schema<User>({
   },
   email: {
     type: String,
+    unique: true,
     required: true,
   },
   password: {

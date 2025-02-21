@@ -6,17 +6,21 @@ import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 
 import PrivateRouter from "./components/PrivateRouter";
+import NavBar from "./components/NavBar";
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
-      <Route element={<PrivateRouter />}>
-        <Route path="/profile" element={<Profile />} />
-      </Route>
-    </Routes>
+    <>
+      <NavBar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route element={<PrivateRouter />}>
+          <Route path="/profile" element={<Profile />} />
+        </Route>
+      </Routes>
+    </>
   );
 }
 
