@@ -14,7 +14,7 @@ import AdbIcon from "@mui/icons-material/Adb";
 
 import { useState, useEffect } from "react";
 import { useAuth } from "../context/authContext";
-import { profile } from "../services/auth";
+import { profile } from "../services/auth.service";
 
 import { Link } from "react-router";
 

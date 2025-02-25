@@ -1,6 +1,7 @@
 import express from 'express'
 import authRouter from './routes/authRoutes'
 import cors from 'cors'
+import errorHandler from './errors/errorHandler'
 
 const api = express()
 
@@ -16,6 +17,6 @@ api.get('/', (req, res) => {
 api.use('/auth', authRouter)
 
 // Custom error handler
-// api.use((err, req, res, next) => {})
+api.use(errorHandler)
 
 export default api
