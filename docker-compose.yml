@@ -11,6 +11,8 @@ services:
       - /app/node_modules
     ports:
       - "5173:5173"
+    networks: 
+      - elk_elk-net
     env_file:
       - ./frontend/.env
     depends_on:
@@ -26,6 +28,8 @@ services:
       - /api/node_modules
     ports:
       - "8080:8080"
+    networks:
+      - elk_elk-net
     env_file:
       - ./backend/.env
     depends_on:
@@ -36,9 +40,15 @@ services:
     restart: always
     ports:
       - "27017:27017"
+    networks:
+      - elk_elk-net
     volumes:
       - mongo_data:/data/db
 
 volumes:
   mongo_data:
     driver: local
+
+networks:
+  elk_elk-net:
+    external: true

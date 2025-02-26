@@ -9,6 +9,9 @@ const config = {
   token: {
     secret: process.env.JWT_SECRET,
   },
+  env: process.env.NODE_ENV,
 }
+
+console.log(config)
 
 export default config

@@ -49,13 +49,9 @@ const login = async (req: Request, res: Response) => {
 }
 
 const profile = async (req: Request, res: Response) => {
-  console.log('Entrando a controller')
-
   const token = req.get('Authorization')
 
   if (token) {
-    console.log('Token', token)
-
     try {
       const payload: PayloadToken = jwt.verify(
         token,

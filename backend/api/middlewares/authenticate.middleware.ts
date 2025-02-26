@@ -7,7 +7,7 @@ const authenticate = async (
 ) => {
   const token = req.get('Authorization')
 
-  if (!token) {
-    throw
-  }
+  // if (!token) {
+  //   // throw
+  // }
 }

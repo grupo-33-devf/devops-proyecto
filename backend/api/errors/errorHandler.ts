@@ -1,6 +1,8 @@
 import { NextFunction, Request, Response } from 'express'
 import CustomError from './CustomError'
 
+import config from '../config'
+
 export default (
   err: Error,
   req: Request,
@@ -22,6 +24,7 @@ export default (
     res.status(500).json({
       msg: 'Error desconocido',
       code: 'UNKNOWN_ERROR',
+      error: config.env === 'development' ? err : undefined,
     })
   }
 }
