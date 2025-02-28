@@ -9,14 +9,26 @@ export default class CustomError extends Error {
   }
 }
 
+export enum ERROR_CODES {
+  USER_NOT_FOUND = 'USER_NOT_FOUND',
+  INVALID_CREDENTIALS = 'INVALID_CREDENTIALS',
+  DUPLICATED_USER = 'DUPLICATED_USER',
+}
+
 export const UserNotFound = new CustomError(
   'Usuario no encontrado',
   404,
-  'USER_NOT_FOUND'
+  ERROR_CODES.USER_NOT_FOUND
 )
 
 export const InvalidCredentials = new CustomError(
   'Credenciales inválidas',
   401,
-  'INVALID_CREDENTIALS'
+  ERROR_CODES.INVALID_CREDENTIALS
+)
+
+export const DuplicatedUser = new CustomError(
+  'Usuario ya existente',
+  409,
+  ERROR_CODES.DUPLICATED_USER
 )

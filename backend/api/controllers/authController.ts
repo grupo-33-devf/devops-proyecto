@@ -6,7 +6,11 @@ import { Request, Response } from 'express'
 import UserModel from '../models/User.model'
 
 import config from '../config'
-import { UserNotFound, InvalidCredentials } from '../errors/CustomError'
+import {
+  UserNotFound,
+  InvalidCredentials,
+  DuplicatedUser,
+} from '../errors/CustomError'
 
 type PayloadToken = {
   userId: string
@@ -14,6 +18,12 @@ type PayloadToken = {
 }
 
 const register = async (req: Request, res: Response) => {
+  const tempUser = await UserModel.findOne({ email: req.body.user.email })
+
+  if (tempUser) {
+    throw DuplicatedUser
+  }
+
   const newPassword = await bcrypt.hash(req.body.user.password, 10)
 
   await UserModel.create({

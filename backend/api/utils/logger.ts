@@ -18,12 +18,14 @@ const logger = winston.createLogger({
 
 const globalLogger = (req: Request, res: Response, next: NextFunction) => {
   res.on('finish', () => {
-    logger.info('Request log', {
-      method: req.method,
-      url: req.originalUrl,
-      statusCode: res.statusCode,
-      body: req.body,
-    })
+    if (process.env.NODE_ENV !== 'test') {
+      logger.info('Request log', {
+        method: req.method,
+        url: req.originalUrl,
+        statusCode: res.statusCode,
+        body: req.body,
+      })
+    }
   })
   next()
 }
