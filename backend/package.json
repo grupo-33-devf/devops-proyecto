@@ -9,8 +9,7 @@
     "build:clean": "npm run clean && npm run build",
     "start": "node dist/server.js",
     "dev": "tsx server.ts",
-    "dev:watch": "nodemon -e ts  -L --exec 'tsx server.ts'",
-    "prepare": "husky"
+    "dev:watch": "nodemon -e ts  -L --exec 'tsx server.ts'"
   },
   "keywords": [],
   "author": "",
