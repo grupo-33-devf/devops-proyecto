@@ -12,6 +12,8 @@ const config = {
   env: process.env.NODE_ENV,
 }
 
-console.log(config)
+if (config.env === 'development') {
+  console.log(config)
+}
 
 export default config
